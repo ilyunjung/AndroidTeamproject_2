@@ -2,6 +2,7 @@ package com.android.androidteamproject_2;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,6 @@ import java.util.List;
 class GridAdapter extends BaseAdapter {
     private final List<String> list;
     private final LayoutInflater inflater;
-
     public GridAdapter(Context context, List<String> list) {
         //입력받음 daylist로 객체 초기화
         this.list = list;
@@ -37,8 +37,8 @@ class GridAdapter extends BaseAdapter {
     @Override
     //각각 포지션에 convertview 설정
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder = null;
 
+        ViewHolder holder = null;
         if (convertView == null) {// convertView는 그리드 하나
             convertView = inflater.inflate(R.layout.calendar_gridview, parent, false);
             // calendar_gridview.xml파일을 convertview 객체로 반환
@@ -63,11 +63,13 @@ class GridAdapter extends BaseAdapter {
                 color = Color.BLUE;
                 break;
         }
+        DisplayMetrics dm = parent.getContext().getResources().getDisplayMetrics();
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+        holder.tvItemGridView.setWidth(width/7);
+        holder.tvItemGridView.setHeight(height/6);
         holder.tvItemGridView.setTextColor(color);
         //그리드뷰에 적힌 날짜 색 설정
         return convertView;
     }
 }
-
-
-
