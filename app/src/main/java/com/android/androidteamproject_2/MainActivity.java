@@ -24,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
         // 앱바의 옵션 버튼을 누를 경우 mainmenu.xml의 레이아웃을 보여줌
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
+
         return super.onCreateOptionsMenu(menu);
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -37,23 +37,22 @@ public class MonthFragment extends Fragment {
     int gridviewH;
     public MonthFragment() {
     }
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             year = getArguments().getInt(ARG_PARAM1);
             month = getArguments().getInt(ARG_PARAM2);
+            getActivity().setTitle(year + "년"+month+"월");
         }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_month_view, container, false);
         GridView gridview = (GridView) v.findViewById(R.id.gridview);
         setCalendar(year, month); //daylist를 초기화 히면서 year, month 정보를 넣는다.
+
         //linearlayout의 크기를 구해 textview에 맞게 설정
         LinearLayout ll = (LinearLayout) v.findViewById(R.id.calendar_layout);
         h=ll.getHeight();
@@ -70,9 +69,9 @@ public class MonthFragment extends Fragment {
             //position은 내가 누른 위치.
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Toast.makeText(getActivity(), (year) + "/" + (month + 1) + "/" + (position - firstday + 1), Toast.LENGTH_SHORT).show();
+                gridview.setBackgroundColor(Color.CYAN);
             }
         });
-
         adapter = new GridAdapter(getActivity(), daylist);
         gridview.setAdapter(adapter);
         return v;
@@ -97,6 +96,7 @@ public class MonthFragment extends Fragment {
                 daylist.add("" + (i - firstday + 1));
         }
     }
+
     public static MonthFragment newInstance(int year, int month) {
         MonthFragment fragment = new MonthFragment();
         Bundle args = new Bundle();

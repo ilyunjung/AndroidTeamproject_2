@@ -40,8 +40,8 @@ public class WeekViewFragment extends Fragment {
     public static WeekViewFragment newInstance(String param1, String param2) {
         WeekViewFragment fragment = new WeekViewFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM1, "asd");
+        args.putString(ARG_PARAM2, "fds");
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,6 +52,7 @@ public class WeekViewFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            getActivity().setTitle(mParam1+mParam2);
         }
     }
 

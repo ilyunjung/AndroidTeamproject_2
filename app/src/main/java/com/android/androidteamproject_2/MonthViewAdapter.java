@@ -8,7 +8,7 @@ import java.util.Calendar;
 
 
 public class MonthViewAdapter extends FragmentStateAdapter {
-    private static final int NUM_ITEMS = 3;
+    private static final int NUM_ITEMS = 60;
     // 앱을 실행시킨 순간의 연도, 월, 날짜
     private int year;
     private int month;
@@ -21,23 +21,11 @@ public class MonthViewAdapter extends FragmentStateAdapter {
         month = calendar.get(Calendar.MONTH);
     }
 
-    @NonNull
     @Override
     public MonthFragment createFragment(int position) {
-        switch(position)
-        {
+        position =NUM_ITEMS/2;
 
-            case 0:
-                month -=1;
-                return MonthFragment.newInstance(year, month);
-            case 1:
-                return MonthFragment.newInstance(year, month);
-            case 2:
-                month +=1;
-                return MonthFragment.newInstance(year, month);
-            default:
-                return null;
-        }
+        return MonthFragment.newInstance(month, year);
     }
 
     @Override
